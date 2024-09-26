@@ -41,7 +41,7 @@ method maxCommonSubstringLength(str1: string, str2: string) returns (len:nat) {
   var i := 1;
   while(i < |str1|){
     var subFound := haveCommonKSubstring(i, str1, str2);
-    if subFound len := i
+    if subFound len := i;
     i := i++;
   }
   return len;
