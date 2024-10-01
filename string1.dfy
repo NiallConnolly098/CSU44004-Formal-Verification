@@ -1,5 +1,5 @@
 // Niall Connolly 20332921
-// Jacob Wilson Sharpe
+// Jacob Wilson Sharpe 20332475
 
 // Method 1 The following method should return true if and only if pre is a prefix of str. That is, str starts with pre.
 method isPrefix(pre: string, str: string) returns (res:bool) 
