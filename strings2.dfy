@@ -19,13 +19,13 @@ lemma PrefixNegationLemma(pre:string, str:string)
 predicate isSubstringPred(sub:string, str:string)
 {
   //TODO
-	exists i :: (0 <= i && i + |sub| <= |str|) &&  isPrefixPred(sub, str[i..])
+	exists i :: 0 <= i <= (|str| - |sub|) && isPrefixPred(sub, str[i..])
 }
 
 predicate isNotSubstringPred(sub:string, str:string)
 {
 	//TODO: your FOL formula should start with a forall
-	forall i ::!(0 <= i && i + |sub| <= |str|) &&  !isPrefixPred(sub, str[i..])
+	forall i :: i < 0 || i > (|str| - |sub|) || isNotPrefixPred(sub, str[i..])
 }
 
 // Sanity check: Dafny should be able to automatically prove the following lemma
@@ -38,11 +38,13 @@ lemma SubstringNegationLemma(sub:string, str:string)
 predicate haveCommonKSubstringPred(k:nat, str1:string, str2:string)
 {
   //TODO
+	true
 }
 
 predicate haveNotCommonKSubstringPred(k:nat, str1:string, str2:string)
 {
 	//TODO: your FOL formula should start with a forall
+	true
 }
 
 // Sanity check: Dafny should be able to automatically prove the following lemma
