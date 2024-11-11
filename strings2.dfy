@@ -25,7 +25,7 @@ predicate isSubstringPred(sub:string, str:string)
 predicate isNotSubstringPred(sub:string, str:string)
 {
 	//TODO: your FOL formula should start with a forall
-	forall i :: i < 0 || i > (|str| - |sub|) || isNotPrefixPred(sub, str[i..])
+	forall i :: 0 <= i && i + |sub| <= |str| ==> isNotPrefixPred(sub, str[i..])
 }
 
 // Sanity check: Dafny should be able to automatically prove the following lemma
@@ -38,13 +38,13 @@ lemma SubstringNegationLemma(sub:string, str:string)
 predicate haveCommonKSubstringPred(k:nat, str1:string, str2:string)
 {
   //TODO
-	true
+  exists i,j :: (0 <= i <= |str1| - k && j == i + k && isSubstringPred(str1[i..j], str2) )
 }
 
 predicate haveNotCommonKSubstringPred(k:nat, str1:string, str2:string)
 {
 	//TODO: your FOL formula should start with a forall
-	true
+	forall i,j :: 0 <= i <= |str1| - k && j == i + k ==> isNotSubstringPred(str1[i..j], str2)
 }
 
 // Sanity check: Dafny should be able to automatically prove the following lemma
