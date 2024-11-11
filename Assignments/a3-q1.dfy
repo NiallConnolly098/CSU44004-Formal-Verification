@@ -1,7 +1,6 @@
 //predicate all numbers in s are unique
 predicate Unique(s: seq<int>) {
-	//TODO: implement the predicate
-	true
+	forall x, y :: 0 <= x < |s| && 0 <= y < |s| && x != y ==> s[x] != s[y]
 }
 // all numbers in s1 appear at least twice in s2
 predicate AtLeastTwice(s1: seq<int>, s2: seq<int>) {
@@ -9,18 +8,15 @@ predicate AtLeastTwice(s1: seq<int>, s2: seq<int>) {
 }
 // all numbers in s1 appear at most twice in s2
 predicate AtMostTwice(s1: seq<int>, s2: seq<int>) {
-	//TODO: implement the predicate
-	true
+	forall i :: 0 <= i < |s1| ==> !(exists j,k,l :: 0 <= j < |s2| && j < k < |s2| && k < l < |s2| && s1[i] == s2[j] == s2[k] == s2[l])
 }
 // all numbers in s1 appear exactly twice in s2
 predicate ExactlyTwice(s1: seq<int>, s2: seq<int>) {
-	//TODO: implement the predicate
-	true
+	forall i :: 0 <= i < |s1| ==> ((exists j :: 0 <= j < |s2| && exists k  :: j < k < |s2| && s1[i] == s2[j] == s2[k]) && !(exists a,b,c :: 0 <= a < |s2| && a < b < |s2| && b < c < |s2| && s1[i] == s2[a] == s2[b] == s2[c]))
 }
 // all numbers in s1, if they do not appear in s2, then they also do not appear in s3
 predicate Complex(s1: seq<int>, s2: seq<int>, s3: seq<int>) {
-	//TODO: implement the predicate
-	true
+	forall x :: 0 <= x < |s1| ==> ((!exists z :: 0 <= z < |s2| && s1[x] == s2[z]) ==> (!exists y :: 0 <= y < |s3| && s1[x] == s3[y]))
 }
 
 method VerifyUnique() {
@@ -36,7 +32,7 @@ method VerifyUnique() {
 	assert s32[1] != s32[0] == s32[2];
 	var s33 := [1, 1, 2];
 	assert s33[1] == s33[0] != s33[2];
-	var s34 := [1, 1, 1];
+	var s34 := [1, 1, 1];	
 	assert s34[0] == s34[1] == s34[2];
 
 	assert Unique(s0);
