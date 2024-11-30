@@ -111,4 +111,3 @@ method maxCommonSubstringLength(str1: string, str2: string) returns (len:nat)
   assert isPrefixPred(str1[0..0], str2[0..]);
   return len;
 }
-
